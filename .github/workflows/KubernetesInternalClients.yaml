@@ -256,6 +256,9 @@ jobs:
           sleep 10
           kubectl logs pod/hazelcast-${{ matrix.client-language }}-client | grep 'Successful connection!' -q
           
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+          
       - name: Scale up
         run: |
             helm upgrade hz-hazelcast --set cluster.memberCount=6 hazelcast/hazelcast
