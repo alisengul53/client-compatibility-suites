@@ -35,7 +35,7 @@ jobs:
       - name: Checkout the client repo
         uses: actions/checkout@v2
         with:
-          repository: hazelcast/hazelcast-csharp-client
+          repository: zpqrtbnk/hazelcast-csharp-client
           path: KubernetesInternalClients/csharp/clientSourceCode
           ref: ${{ github.event.inputs.csharp_run }}
           
