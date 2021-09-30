@@ -2,6 +2,10 @@ name: Kubernetes external clients compatibility tests with GKE
 on:
   workflow_dispatch:
     inputs:
+      repo_owner:
+        description: Set the repository owner, default is hazelcast(It is added for client owners. If they would like to run any test suites(backward compatibility, K8s) with their forked repo branches, this parameter should be used.) 
+        required: true
+        default: hazelcast
       hazelcast_version:
         description: Set hazelcast version
         default: 4.2
@@ -126,7 +130,7 @@ jobs:
     - name: Checkout the go client repo
       uses: actions/checkout@v2
       with:
-        repository: hazelcast/hazelcast-go-client
+        repository: ${{ github.event.inputs.repo_owner }}/hazelcast-go-client
         path: KubernetesExternalClients/go/clientSourceCode
         ref: ${{ github.event.inputs.go_run }}
       
@@ -170,7 +174,7 @@ jobs:
     - name: Checkout the Python client repo
       uses: actions/checkout@v2
       with:
-        repository: hazelcast/hazelcast-python-client
+        repository: ${{ github.event.inputs.repo_owner }}/hazelcast-python-client
         path: KubernetesExternalClients/python/clientSourceCode
         ref: ${{ github.event.inputs.python_run }}
         
@@ -215,7 +219,7 @@ jobs:
     - name: Checkout the Nodejs client repo
       uses: actions/checkout@v2
       with:
-        repository: hazelcast/hazelcast-nodejs-client
+        repository: ${{ github.event.inputs.repo_owner }}/hazelcast-nodejs-client
         path: KubernetesExternalClients/nodejs/clientSourceCode
         ref: ${{ github.event.inputs.nodejs_run }}
         
@@ -263,7 +267,7 @@ jobs:
     - name: Checkout the Csharp client repo
       uses: actions/checkout@v2
       with:
-        repository: hazelcast/hazelcast-csharp-client
+        repository: ${{ github.event.inputs.repo_owner }}/hazelcast-csharp-client
         path: KubernetesExternalClients/csharp/clientSourceCode
         ref: ${{ github.event.inputs.csharp_run }}
       
@@ -305,7 +309,7 @@ jobs:
     - name: Checkout the Cpp client repo
       uses: actions/checkout@v2
       with:
-        repository: hazelcast/hazelcast-cpp-client
+        repository: ${{ github.event.inputs.repo_owner }}/hazelcast-cpp-client
         path: KubernetesExternalClients/cpp/clientSourceCode
         ref: ${{ github.event.inputs.cpp_run }}
 
