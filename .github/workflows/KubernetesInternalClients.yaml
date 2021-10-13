@@ -260,8 +260,8 @@ jobs:
             kubectl wait --for=condition=ready pod/hz-hazelcast-0 --timeout=180s
             kubectl wait --for=condition=ready pod/hz-hazelcast-1 --timeout=180s
             kubectl wait --for=condition=ready pod/hz-hazelcast-2 --timeout=180s
-            
-            
+            sleep 60
+                        
       - name: Verify after delete pods
         run: |            
             kubectl logs --tail=20 hazelcast-${{ matrix.client-language }}-client --timestamps=true >> output-${{ matrix.client-language }}-deletepods.txt
