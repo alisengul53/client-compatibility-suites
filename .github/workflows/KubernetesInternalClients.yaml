@@ -262,6 +262,9 @@ jobs:
             kubectl wait --for=condition=ready pod/hz-hazelcast-2 --timeout=180s
             sleep 60
             
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+            
       - name: Verify after delete pods
         run: |            
             kubectl logs --tail=20 hazelcast-${{ matrix.client-language }}-client >> output-${{ matrix.client-language }}-deletepods.txt
