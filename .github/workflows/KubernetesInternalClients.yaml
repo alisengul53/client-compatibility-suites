@@ -260,7 +260,7 @@ jobs:
             kubectl wait --for=condition=ready pod/hz-hazelcast-0 --timeout=180s
             kubectl wait --for=condition=ready pod/hz-hazelcast-1 --timeout=180s
             kubectl wait --for=condition=ready pod/hz-hazelcast-2 --timeout=180s
-            sleep 60
+            
             
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
