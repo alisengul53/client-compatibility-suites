@@ -224,7 +224,7 @@ jobs:
       - name: Verify client application
         run: |-
           sleep 10
-          kubectl logs pod/hazelcast-${{ matrix.client-language }}-client | grep 'Successful connection!' -q
+          kubectl logs pod/hazelcast-${{ matrix.client-language }}-client --timestamps=true | grep 'Successful connection!' -q
           
       - name: Scale up
         run: |
@@ -239,7 +239,7 @@ jobs:
             
       - name: Verify after scale up
         run: |
-            kubectl logs --tail=20 hazelcast-${{ matrix.client-language }}-client >> output-${{ matrix.client-language }}-scaleup.txt
+            kubectl logs --tail=20 hazelcast-${{ matrix.client-language }}-client --timestamps=true >> output-${{ matrix.client-language }}-scaleup.txt
             cat output-${{ matrix.client-language }}-scaleup.txt
             if [ $(grep -o 'Current map size:' output-${{ matrix.client-language }}-scaleup.txt | wc -l) != $"20" ]; then exit 1; fi
         
@@ -250,7 +250,7 @@ jobs:
             
       - name: Verify after scale down
         run: |            
-            kubectl logs --tail=20 hazelcast-${{ matrix.client-language }}-client >> output-${{ matrix.client-language }}-scaledown.txt
+            kubectl logs --tail=20 hazelcast-${{ matrix.client-language }}-client --timestamps=true >> output-${{ matrix.client-language }}-scaledown.txt
             cat output-${{ matrix.client-language }}-scaledown.txt
             if [ $(grep -o 'Current map size:' output-${{ matrix.client-language }}-scaledown.txt | wc -l) != $"20" ]; then exit 1; fi
             
@@ -262,17 +262,14 @@ jobs:
             kubectl wait --for=condition=ready pod/hz-hazelcast-2 --timeout=180s
             
             
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-            
       - name: Verify after delete pods
         run: |            
-            kubectl logs --tail=20 hazelcast-${{ matrix.client-language }}-client >> output-${{ matrix.client-language }}-deletepods.txt
+            kubectl logs --tail=20 hazelcast-${{ matrix.client-language }}-client --timestamps=true >> output-${{ matrix.client-language }}-deletepods.txt
             cat output-${{ matrix.client-language }}-deletepods.txt
             if [ $(grep -o 'Current map size:' output-${{ matrix.client-language }}-deletepods.txt | wc -l) != $"20" ]; then exit 1; fi
             
       - name: Logs
         if: always()
         run: |
-            kubectl logs pod/hazelcast-${{ matrix.client-language }}-client
+            kubectl logs pod/hazelcast-${{ matrix.client-language }}-client --timestamps=true
 
