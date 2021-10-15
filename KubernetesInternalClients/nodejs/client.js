@@ -7,6 +7,9 @@ const clientConfig = {
         clusterMembers: [
             'hz-hazelcast'
         ]
+    },
+    properties: {
+        'hazelcast.logging.level': 'TRACE'
     }
 };
 
