@@ -147,7 +147,7 @@ jobs:
       - name: Checkout the client repo
         uses: actions/checkout@v2
         with:
-          repository: hazelcast/hazelcast-go-client
+          repository: alisengul53/hazelcast-go-client
           path: KubernetesInternalClients/go/clientSourceCode
           ref: ${{ github.event.inputs.go_run }}
             
