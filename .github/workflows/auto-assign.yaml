@@ -11,3 +11,6 @@ jobs:
         uses: necojackarc/auto-request-review@v0.7.0
         with:
           token: ${{ secrets.TEST_PAT }}
+          
+      - name: Test
+        run: echo "alisen"
