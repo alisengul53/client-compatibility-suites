@@ -185,6 +185,9 @@ jobs:
         path: KubernetesExternalClients/nodejs/clientSourceCode
         ref: ${{ github.event.inputs.nodejs_run }}
         
+    - name: Debugging with tmate
+      uses: mxschmitt/action-tmate@v3.8
+        
     - name: Run test
       run: |
         cp KubernetesExternalClients/nodejs/client.js KubernetesExternalClients/nodejs/clientSourceCode/
