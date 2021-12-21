@@ -185,9 +185,6 @@ jobs:
         path: KubernetesExternalClients/nodejs/clientSourceCode
         ref: ${{ github.event.inputs.nodejs_run }}
         
-    - name: Debugging with tmate
-      uses: mxschmitt/action-tmate@v3.8
-        
     - name: Run test
       run: |
         cp KubernetesExternalClients/nodejs/client.js KubernetesExternalClients/nodejs/clientSourceCode/
@@ -195,9 +192,9 @@ jobs:
         npm install
         npm run compile
         sed -i "s/<EXTERNAL-IP>/${{needs.create-gke-cluster.outputs.external-ip}}/g" client.js
-        node client.js &> output.txt && tail -n 20 output.txt &> last20lines.txt
-        cat last20lines.txt
-        if [ $(grep -o 'Current map size:' last20lines.txt | wc -l) != $"14" ]; then exit 1; fi
+        
+    - name: Debugging with tmate
+      uses: mxschmitt/action-tmate@v3.8
         
 #Count set it as 14 for verification because last 6 lines has shotdown logs of nodejs and there should be 14 'Current map size:'
 #TODO: More reliabe verification. 
