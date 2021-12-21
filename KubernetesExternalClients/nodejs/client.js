@@ -33,7 +33,6 @@ const clientConfig = {
             const size = await map.size();
             console.log(`Current map size: ${size}`);
             await new Promise((resolve) => setTimeout(resolve, 1000));
-            numberOfLoop++;
         }
         await client.shutdown();
     } catch (err) {
