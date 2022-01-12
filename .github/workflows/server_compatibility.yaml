@@ -328,22 +328,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-      - name: Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-      - name: Setup .NET Core 5.0.x
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
-      - name: Setup .NET Core 3.1.x
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 3.1.x
-      - name: Setup .NET Core 2.1.x
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 2.1.x
+          
       - name: Checkout to tag
         uses: actions/checkout@v2
         with:
@@ -351,15 +336,15 @@ jobs:
           path: tag
           ref: ${{ matrix.client_tag }}
           
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+          
       - name: Replace scripts
         run: |
             rm -rf $GITHUB_WORKSPACE/tag/hz.ps1
             rm -rf $GITHUB_WORKSPACE/tag/build/utils.ps1
             cp -a $GITHUB_WORKSPACE/utils.ps1 $GITHUB_WORKSPACE/tag/build/
             cp -a $GITHUB_WORKSPACE/hz.ps1 $GITHUB_WORKSPACE/tag/
-            
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
         
       - name: Download Hazelcast tests JAR
         uses: actions/download-artifact@v2
