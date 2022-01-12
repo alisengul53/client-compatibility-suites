@@ -314,7 +314,7 @@ jobs:
         id: set-matrix
         run: echo "::set-output name=matrix::$( python get_client_matrix.py --client cs --option tag --use-latest-patch-versions )"
   test_csharp_clients:
-    needs: [ upload_jars, setup_csharp_client_matrix ]
+    needs: [ setup_csharp_client_matrix ]
     runs-on: windows-latest
     strategy:
       fail-fast: false
@@ -350,6 +350,17 @@ jobs:
           repository: hazelcast/hazelcast-csharp-client
           path: tag
           ref: ${{ matrix.client_tag }}
+          
+      - name: Replace scripts
+        run: |
+            rm -rf $GITHUB_WORKSPACE/tag/hz.ps1
+            rm -rf $GITHUB_WORKSPACE/tag/build/utils.ps1
+            cp -a $GITHUB_WORKSPACE/utils.ps1 $GITHUB_WORKSPACE/tag/build/
+            cp -a $GITHUB_WORKSPACE/hz.ps1 $GITHUB_WORKSPACE/tag/
+            
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        
       - name: Download Hazelcast tests JAR
         uses: actions/download-artifact@v2
         with:
