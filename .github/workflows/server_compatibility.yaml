@@ -342,6 +342,7 @@ jobs:
           rm -rf $GITHUB_WORKSPACE/tag/build/utils.ps1
           cp -a $GITHUB_WORKSPACE/utils.ps1 $GITHUB_WORKSPACE/tag/build/
           cp -a $GITHUB_WORKSPACE/hz.ps1 $GITHUB_WORKSPACE/tag/
+        shell: bash
           
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
