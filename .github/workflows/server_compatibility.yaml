@@ -350,6 +350,15 @@ jobs:
           repository: hazelcast/hazelcast-csharp-client
           path: tag
           ref: ${{ matrix.client_tag }}
+          
+      - name: Replace scripts
+        run: |
+          rm -rf $GITHUB_WORKSPACE/tag/hz.ps1
+          rm -rf $GITHUB_WORKSPACE/tag/build/utils.ps1
+          cp -a $GITHUB_WORKSPACE/utils.ps1 $GITHUB_WORKSPACE/tag/build/
+          cp -a $GITHUB_WORKSPACE/hz.ps1 $GITHUB_WORKSPACE/tag/
+        shell: bash
+        
       - name: Download Hazelcast tests JAR
         uses: actions/download-artifact@v2
         with:
