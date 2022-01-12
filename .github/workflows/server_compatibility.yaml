@@ -251,7 +251,7 @@ jobs:
       - name: Copy client code into master
         run: |
           rm -rf $GITHUB_WORKSPACE/master/lib
-          rm $GITHUB_WORKSPACE/master/package.json
+          rm -rf $GITHUB_WORKSPACE/master/package.json
           cp -a $GITHUB_WORKSPACE/tag/lib $GITHUB_WORKSPACE/master/lib
           cp -a $GITHUB_WORKSPACE/tag/package.json $GITHUB_WORKSPACE/master/package.json
       - name: Download Hazelcast tests JAR
