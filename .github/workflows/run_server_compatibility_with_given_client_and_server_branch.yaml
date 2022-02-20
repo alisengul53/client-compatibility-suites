@@ -99,6 +99,7 @@ jobs:
       matrix:
         server_kind: [ os, enterprise ]
     name: Test Python client ${{ github.event.inputs.run_python }} with ${{ matrix.server_kind }} ${{ github.event.inputs.hz_version }} server
+    if: ${{ github.event.inputs.run_python != 'no' }}
     steps:
       - name: Checkout to scripts
         uses: actions/checkout@v2
@@ -181,6 +182,7 @@ jobs:
       matrix:
         server_kind: [ os, enterprise ]
     name: Test Nodejs client ${{ github.event.inputs.run_nodejs }} with ${{ matrix.server_kind }} ${{ github.event.inputs.hz_version }} server
+    if: ${{ github.event.inputs.run_nodejs != 'no' }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup Python
@@ -274,6 +276,7 @@ jobs:
       matrix:
         server_kind: [ os, enterprise ]
     name: Test Csharp client ${{ github.event.inputs.run_csharp }} with ${{ matrix.server_kind }} ${{ github.event.inputs.hz_version }} server
+    if: ${{ github.event.inputs.run_csharp != 'no' }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup Python
@@ -356,6 +359,7 @@ jobs:
       matrix:
         server_kind: [ enterprise ] #TODO When tests are divided as OS, ENTERPRISE, OS matrix will be added
     name: Test CPP client ${{ github.event.inputs.run_cpp }} with ${{ matrix.server_kind }} ${{ github.event.inputs.hz_version }} server
+    if: ${{ github.event.inputs.run_cpp != 'no' }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup Python
@@ -454,6 +458,7 @@ jobs:
       fail-fast: false
         
     name: Test Go client ${{ github.event.inputs.run_go }} with ${{ matrix.server_kind }} ${{ github.event.inputs.hz_version }} server
+    if: ${{ github.event.inputs.run_go != 'no' }}
     steps:
         
       - name: Setup Java
