@@ -79,7 +79,7 @@ jobs:
           apiKey: ${{ secrets.APIKEY_PROD }}
           apiSecret: ${{ secrets.APISECRET_PROD }}
         run: |
-          python start_remote_controller.py --use-simple-server &> rc_standard_cluster.log &
+          python start_remote_controller.py &> rc_standard_cluster.log &
           sleep 30
           
       - name: Debugging with tmate
