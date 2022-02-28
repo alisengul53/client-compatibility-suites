@@ -69,7 +69,7 @@ jobs:
           apiKey: ${{ secrets.APIKEY_UAT }}
           apiSecret: ${{ secrets.APISECRET_UAT }}
         run: |
-          python start_remote_controller.py --use-simple-server &> rc_standard_cluster.log &
+          python start_remote_controller.py &> rc_standard_cluster.log &
           sleep 30
           
       - name: Start RC for PROD
