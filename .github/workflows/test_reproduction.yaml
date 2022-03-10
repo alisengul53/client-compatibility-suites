@@ -35,7 +35,7 @@ jobs:
       fail-fast: false
       matrix:
         version: ${{ fromJson(needs.setup_server_matrix.outputs.matrix) }}
-        kind: [os]
+        kind: [enterprise]
         os: [ ubuntu-latest ]
     name: Test NearCacheRecoversFromDistortions against ${{ matrix.kind }} ${{ matrix.version }} server on ${{ matrix.os }}
     steps:
@@ -77,7 +77,6 @@ jobs:
         working-directory: client
       - name: Run all tests
         shell: pwsh
-        if: ${{ matrix.kind == 'enterprise' }}
         run: ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
         working-directory: client
         env:
