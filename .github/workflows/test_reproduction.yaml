@@ -28,7 +28,7 @@ jobs:
       - name: Set server matrix
         id: set-matrix
         run: echo "::set-output name=matrix::$( python get_server_matrix.py )"
-  test_client:
+  test_client1:
     needs: [setup_server_matrix]
     runs-on: ${{ matrix.os }}
     strategy:
@@ -37,7 +37,7 @@ jobs:
         version: ${{ fromJson(needs.setup_server_matrix.outputs.matrix) }}
         kind: [enterprise]
         os: [ ubuntu-latest ]
-    name: Test NearCacheRecoversFromDistortions against ${{ matrix.kind }} ${{ matrix.version }} server on ${{ matrix.os }}
+    name: Job1 Test NearCacheRecoversFromDistortions against ${{ matrix.kind }} ${{ matrix.version }} server on ${{ matrix.os }}
     steps:
       - name: Checkout to scripts
         uses: actions/checkout@v2
@@ -81,4 +81,219 @@ jobs:
         working-directory: client
         env:
           HAZELCAST_ENTERPRISE_KEY: ${{ secrets.HAZELCAST_ENTERPRISE_KEY }}
-        
+
+  test_client2:
+    needs: [setup_server_matrix]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ${{ fromJson(needs.setup_server_matrix.outputs.matrix) }}
+        kind: [enterprise]
+        os: [ ubuntu-latest ]
+    name: Job2 Test NearCacheRecoversFromDistortions against ${{ matrix.kind }} ${{ matrix.version }} server on ${{ matrix.os }}
+    steps:
+      - name: Checkout to scripts
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Setup .NET Core 5.0.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Setup .NET Core 3.1.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - name: Setup .NET Core 2.1.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.1.x
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Checkout to ${{ github.event.inputs.branch_name }}
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.event.inputs.organization_name }}/hazelcast-csharp-client
+          path: client
+          ref: ${{ github.event.inputs.branch_name }}
+      - name: Update submodules
+        run: |
+            git submodule update --init
+        working-directory: client
+      - name: Build
+        shell: pwsh
+        run: ./hz.ps1 build
+        working-directory: client
+      - name: Run all tests
+        shell: pwsh
+        run: ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+        working-directory: client
+        env:
+          HAZELCAST_ENTERPRISE_KEY: ${{ secrets.HAZELCAST_ENTERPRISE_KEY }}
+
+  test_client3:
+    needs: [setup_server_matrix]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ${{ fromJson(needs.setup_server_matrix.outputs.matrix) }}
+        kind: [enterprise]
+        os: [ ubuntu-latest ]
+    name: Job3 Test NearCacheRecoversFromDistortions against ${{ matrix.kind }} ${{ matrix.version }} server on ${{ matrix.os }}
+    steps:
+      - name: Checkout to scripts
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Setup .NET Core 5.0.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Setup .NET Core 3.1.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - name: Setup .NET Core 2.1.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.1.x
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Checkout to ${{ github.event.inputs.branch_name }}
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.event.inputs.organization_name }}/hazelcast-csharp-client
+          path: client
+          ref: ${{ github.event.inputs.branch_name }}
+      - name: Update submodules
+        run: |
+            git submodule update --init
+        working-directory: client
+      - name: Build
+        shell: pwsh
+        run: ./hz.ps1 build
+        working-directory: client
+      - name: Run all tests
+        shell: pwsh
+        run: ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+        working-directory: client
+        env:
+          HAZELCAST_ENTERPRISE_KEY: ${{ secrets.HAZELCAST_ENTERPRISE_KEY }}          
+
+  test_client4:
+    needs: [setup_server_matrix]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ${{ fromJson(needs.setup_server_matrix.outputs.matrix) }}
+        kind: [enterprise]
+        os: [ ubuntu-latest ]
+    name: Job4 Test NearCacheRecoversFromDistortions against ${{ matrix.kind }} ${{ matrix.version }} server on ${{ matrix.os }}
+    steps:
+      - name: Checkout to scripts
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Setup .NET Core 5.0.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Setup .NET Core 3.1.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - name: Setup .NET Core 2.1.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.1.x
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Checkout to ${{ github.event.inputs.branch_name }}
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.event.inputs.organization_name }}/hazelcast-csharp-client
+          path: client
+          ref: ${{ github.event.inputs.branch_name }}
+      - name: Update submodules
+        run: |
+            git submodule update --init
+        working-directory: client
+      - name: Build
+        shell: pwsh
+        run: ./hz.ps1 build
+        working-directory: client
+      - name: Run all tests
+        shell: pwsh
+        run: ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+        working-directory: client
+        env:
+          HAZELCAST_ENTERPRISE_KEY: ${{ secrets.HAZELCAST_ENTERPRISE_KEY }}
+          
+  test_client5:
+    needs: [setup_server_matrix]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ${{ fromJson(needs.setup_server_matrix.outputs.matrix) }}
+        kind: [enterprise]
+        os: [ ubuntu-latest ]
+    name: Job5 Test NearCacheRecoversFromDistortions against ${{ matrix.kind }} ${{ matrix.version }} server on ${{ matrix.os }}
+    steps:
+      - name: Checkout to scripts
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Setup .NET Core 5.0.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Setup .NET Core 3.1.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - name: Setup .NET Core 2.1.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.1.x
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Checkout to ${{ github.event.inputs.branch_name }}
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.event.inputs.organization_name }}/hazelcast-csharp-client
+          path: client
+          ref: ${{ github.event.inputs.branch_name }}
+      - name: Update submodules
+        run: |
+            git submodule update --init
+        working-directory: client
+      - name: Build
+        shell: pwsh
+        run: ./hz.ps1 build
+        working-directory: client
+      - name: Run all tests
+        shell: pwsh
+        run: ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+        working-directory: client
+        env:
+          HAZELCAST_ENTERPRISE_KEY: ${{ secrets.HAZELCAST_ENTERPRISE_KEY }}
