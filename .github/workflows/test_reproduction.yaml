@@ -77,7 +77,17 @@ jobs:
         working-directory: client
       - name: Run all tests
         shell: pwsh
-        run: ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+        run: |
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
         working-directory: client
         env:
           HAZELCAST_ENTERPRISE_KEY: ${{ secrets.HAZELCAST_ENTERPRISE_KEY }}
@@ -131,7 +141,17 @@ jobs:
         working-directory: client
       - name: Run all tests
         shell: pwsh
-        run: ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+        run: |
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
         working-directory: client
         env:
           HAZELCAST_ENTERPRISE_KEY: ${{ secrets.HAZELCAST_ENTERPRISE_KEY }}
@@ -185,7 +205,17 @@ jobs:
         working-directory: client
       - name: Run all tests
         shell: pwsh
-        run: ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+        run: |
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
         working-directory: client
         env:
           HAZELCAST_ENTERPRISE_KEY: ${{ secrets.HAZELCAST_ENTERPRISE_KEY }}          
@@ -239,7 +269,17 @@ jobs:
         working-directory: client
       - name: Run all tests
         shell: pwsh
-        run: ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+        run: |
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
         working-directory: client
         env:
           HAZELCAST_ENTERPRISE_KEY: ${{ secrets.HAZELCAST_ENTERPRISE_KEY }}
@@ -293,7 +333,17 @@ jobs:
         working-directory: client
       - name: Run all tests
         shell: pwsh
-        run: ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+        run: |
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
+          ./hz.ps1 -enterprise -tf "namespace == Hazelcast.Tests.NearCache" -server 5.1 test
         working-directory: client
         env:
           HAZELCAST_ENTERPRISE_KEY: ${{ secrets.HAZELCAST_ENTERPRISE_KEY }}
