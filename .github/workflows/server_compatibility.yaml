@@ -343,9 +343,6 @@ jobs:
           cp -a $GITHUB_WORKSPACE/utils.ps1 $GITHUB_WORKSPACE/tag/build/
           cp -a $GITHUB_WORKSPACE/hz.ps1 $GITHUB_WORKSPACE/tag/
         shell: bash
-          
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
         
       - name: Download Hazelcast tests JAR
         uses: actions/download-artifact@v2
