@@ -38,5 +38,5 @@ jobs:
           apiSecret: ${{ secrets.APISECRET_UAT }}
           hzVersion: ${{ github.event.inputs.hzVersion }}
         run: | 
-          mvn clean install "-Dhazelcast-version=${{ github.event.inputs.java_client_version }}"
+          mvn clean test "-Dhazelcast-version=${{ github.event.inputs.java_client_version }}"
         working-directory: HazelcastCloudTests/javahazelcastcloudtest
