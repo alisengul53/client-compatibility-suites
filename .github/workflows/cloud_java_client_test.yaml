@@ -1,4 +1,4 @@
-name: Hazelcast cloud test with go client
+name: Hazelcast cloud test with Java client
 
 on:
   workflow_dispatch:
@@ -21,7 +21,7 @@ on:
 jobs:
   test_standard_cluster:
     runs-on: ubuntu-latest
-    name: Hazelcast cloud standard cluster tests with go
+    name: Hazelcast cloud standard cluster tests with Java
     steps:
       - name: Checkout to scripts
         uses: actions/checkout@v2
