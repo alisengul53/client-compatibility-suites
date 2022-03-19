@@ -34,8 +34,8 @@ jobs:
       - name: Run cloud tests
         env: 
           baseUrl: ${{ github.event.inputs.base_url }}
-          apiKey: ${{ secrets.APIKEY_PROD }}
-          apiSecret: ${{ secrets.APISECRET_PROD }}
+          apiKey: ${{ secrets.APIKEY_UAT }}
+          apiSecret: ${{ secrets.APISECRET_UAT }}
           hzVersion: ${{ github.event.inputs.hzVersion }}
         run: | 
           mvn clean install "-Dhazelcast-version=${{ github.event.inputs.java_client_version }}"
