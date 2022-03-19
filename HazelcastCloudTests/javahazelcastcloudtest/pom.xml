@@ -71,12 +71,12 @@
         <dependency>
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
-            <version>5.2-SNAPSHOT</version>
+            <version>${hazelcast-version}-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast-enterprise</artifactId>
-            <version>5.2-SNAPSHOT</version>
+            <version>${hazelcast-version}-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <repositories>
