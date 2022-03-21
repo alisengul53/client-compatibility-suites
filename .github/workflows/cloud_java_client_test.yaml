@@ -1,12 +1,8 @@
-name: Hazelcast cloud test with go client
+name: Hazelcast cloud test with Java client
 
 on:
   workflow_dispatch:
     inputs:
-      organization_name:
-        description: Default is hazelcast, but if you would like to run the workflow with your forked repo, set your github username
-        required: true
-        default: hazelcast
       java_client_version:
         description: Java client version without SNAPSHOT suffix
         required: true
@@ -21,7 +17,7 @@ on:
 jobs:
   test_standard_cluster:
     runs-on: ubuntu-latest
-    name: Hazelcast cloud standard cluster tests with go
+    name: Hazelcast cloud standard cluster tests with Java
     steps:
       - name: Checkout to scripts
         uses: actions/checkout@v2
@@ -34,9 +30,9 @@ jobs:
       - name: Run cloud tests
         env: 
           baseUrl: ${{ github.event.inputs.base_url }}
-          apiKey: ${{ secrets.APIKEY_PROD }}
-          apiSecret: ${{ secrets.APISECRET_PROD }}
+          apiKey: ${{ secrets.APIKEY_UAT }}
+          apiSecret: ${{ secrets.APISECRET_UAT }}
           hzVersion: ${{ github.event.inputs.hzVersion }}
         run: | 
-          mvn clean install "-Dhazelcast-version=${{ github.event.inputs.java_client_version }}"
-        working-directory: HazelcastCloudTests/javahazelcastcloudtests
+          mvn clean test "-Dhazelcast-version=${{ github.event.inputs.java_client_version }}"
+        working-directory: HazelcastCloudTests/javahazelcastcloudtest
