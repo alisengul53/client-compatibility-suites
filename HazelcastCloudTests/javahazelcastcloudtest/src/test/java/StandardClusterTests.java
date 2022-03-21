@@ -69,12 +69,12 @@ public class StandardClusterTests {
 //        cloudManager.scaleUpDownHazelcastCloudStandardCluster(tempCluster.getId(), -2);
 //        Helper.mapPutgetAndVerify(map);
         //TestCasesLogger.info("Stop cluster");
-        //CloudCluster test = cloudManager.stopHazelcastCloudCluster(tempCluster.getId());
+        CloudCluster test = cloudManager.stopHazelcastCloudCluster(tempCluster.getId());
 
-        //System.out.println("Test print");
-        //TestCasesLogger.info("Resume cluster");
-        //cloudManager.resumeHazelcastCloudCluster(tempCluster.getId());
-        //Helper.mapPutgetAndVerify(map);
+        System.out.println("Test print");
+        TestCasesLogger.info("Resume cluster");
+        cloudManager.resumeHazelcastCloudCluster(tempCluster.getId());
+        Helper.mapPutgetAndVerify(map);
     }
 
 
