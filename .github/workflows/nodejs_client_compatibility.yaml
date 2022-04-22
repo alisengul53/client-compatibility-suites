@@ -59,7 +59,7 @@ jobs:
           SSL_ENABLED: 1
         run: |
           mkdir jars
-           HZ_VERSION=${{ matrix.version }} ./rc.sh start
+          HZ_VERSION=${{ matrix.version }} ./rc.sh start
           cp -r hazelcast-* jars/
           
       - name: Checkout to master
