@@ -61,7 +61,7 @@ jobs:
           mkdir jars
           cp rc.sh jars/
           cd jars/
-          ./rc.sh start
+          sudo ./rc.sh start
       - name: Checkout to master
         uses: actions/checkout@v2
         with:
