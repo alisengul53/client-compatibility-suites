@@ -61,7 +61,10 @@ jobs:
           mkdir jars
           cp rc.sh jars/
           cd jars/
-          sudo ./rc.sh start
+          
+      - name: Debugging with tmate
+        uses: mxschmitt/action-tmate@v3.11
+        
       - name: Checkout to master
         uses: actions/checkout@v2
         with:
