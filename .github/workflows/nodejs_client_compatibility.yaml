@@ -59,7 +59,7 @@ jobs:
           SSL_ENABLED: 1
         run: |
           mkdir jars
-          ./rc.sh start
+          sudo bash ./rc.sh start
           cp -r hazelcast-* jars/
           
       - name: Checkout to master
