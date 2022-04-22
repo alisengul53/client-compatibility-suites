@@ -53,7 +53,15 @@ jobs:
         with:
           java-version: 8
       - name: Download JARs
-        run: python download_server_jars.py --version ${{ matrix.version }} --server-kind ${{ matrix.kind }} --dst jars
+        env:
+          HAZELCAST_ENTERPRISE_KEY: ${{ secrets.HAZELCAST_ENTERPRISE_KEY }}
+          HZ_VERSION: ${{ matrix.version }}
+          SSL_ENABLED: 1
+        run: |
+          mkdir jars
+          cp rc.sh jars/
+          cd jars/
+          ./rc.sh start
       - name: Checkout to master
         uses: actions/checkout@v2
         with:
