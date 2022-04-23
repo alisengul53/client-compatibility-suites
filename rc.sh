@@ -137,6 +137,12 @@ startRC () {
   downloadHazelcast
   # Download the SQL jar
   downloadSQL
+  
+  if [ "x${HAZELCAST_ENTERPRISE_KEY:-}" != "x" ]; then
+      # Download Hazelcast Enterprise jars
+      downloadHazelcastEnterprise
+      downloadTestsEnterprise
+  fi
 }
 
 stopRC () {
