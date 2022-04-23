@@ -54,7 +54,7 @@ jobs:
           java-version: 8
 
       - name: Download JARs
-        if: ${{ matrix.kind == "enterprise"}}
+        if: ${{ matrix.kind == 'enterprise' }}
         env:
           HAZELCAST_ENTERPRISE_KEY: ${{ secrets.HAZELCAST_ENTERPRISE_KEY }}
           HZ_VERSION: ${{ matrix.version }}
@@ -64,7 +64,7 @@ jobs:
           ./rc.sh start
           cp -r hazelcast-* jars/ 
       - name: Download JARs
-        if: ${{ matrix.kind == "os"}}
+        if: ${{ matrix.kind == 'os' }}
         env:
           HZ_VERSION: ${{ matrix.version }}
         run: |
