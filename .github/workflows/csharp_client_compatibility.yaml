@@ -37,7 +37,8 @@ jobs:
         version: ${{ fromJson(needs.setup_server_matrix.outputs.matrix) }}
         kind: [os, enterprise]
         os: [ ubuntu-latest, windows-latest ]
-    name: Test CSharp client against ${{ matrix.kind }} ${{ matrix.version }} server on ${{ matrix.os }}
+        framework: [3.1.x, 5.0.x, 6.0.x]
+    name: Test CSharp client against ${{ matrix.kind }} ${{ matrix.version }} server on ${{ matrix.os }} framework ${{ matrix.framework }}
     steps:
       - name: Checkout to scripts
         uses: actions/checkout@v2
@@ -49,10 +50,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: |
-            2.1.x
-            3.1.x
-            5.0.x
-            6.0.x
+            ${{ matrix.framework }}
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
