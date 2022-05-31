@@ -37,7 +37,7 @@ jobs:
         version: ${{ fromJson(needs.setup_server_matrix.outputs.matrix) }}
         kind: [os, enterprise]
         os: [ ubuntu-latest, windows-latest ]
-        framework: [3.1.x, 5.0.x, 6.0.x]
+        framework: [netcoreapp3.1, net5.0, net6.0]
     name: Test CSharp client against ${{ matrix.kind }} ${{ matrix.version }} server on ${{ matrix.os }} framework ${{ matrix.framework }}
     steps:
       - name: Checkout to scripts
@@ -50,7 +50,9 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: |
-            ${{ matrix.framework }}
+            3.1.x
+            5.0.x
+            6.0.x
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
@@ -72,12 +74,12 @@ jobs:
       - name: Run non-enterprise tests
         shell: pwsh
         if: ${{ matrix.kind == 'os' }}
-        run: ./hz.ps1 -server ${{ matrix.version }} test
+        run: ./hz.ps1 -f ${{ matrix.framework }} -server ${{ matrix.version }} test
         working-directory: client
       - name: Run all tests
         shell: pwsh
         if: ${{ matrix.kind == 'enterprise' }}
-        run: ./hz.ps1 -enterprise -server ${{ matrix.version }} test
+        run: ./hz.ps1 -f ${{ matrix.framework }} -enterprise -server ${{ matrix.version }} test
         working-directory: client
         env:
           HAZELCAST_ENTERPRISE_KEY: ${{ secrets.HAZELCAST_ENTERPRISE_KEY }}
