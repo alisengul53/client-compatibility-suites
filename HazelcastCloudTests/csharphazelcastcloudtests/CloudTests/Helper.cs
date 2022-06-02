@@ -46,7 +46,7 @@ namespace CloudTests
             options.ClusterName = nameForConnect;
             options.Networking.Cloud.DiscoveryToken = token;
             options.Networking.ReconnectMode = ReconnectMode.ReconnectAsync;
-            options.LoggerFactory.Creator = () => LoggerFactory.Create(logBuilder => logBuilder.AddConsole(o => { o.SingleLine = true; o.TimestampFormat = "hh:mm:ss.fff"; }));
+            options.LoggerFactory.Creator = () => LoggerFactory.Create(logBuilder => logBuilder.AddSimpleConsole(o => { o.SingleLine = true; o.TimestampFormat = "hh:mm:ss.fff"; }));
 
             options.Networking.Cloud.Url = new Uri(Environment.GetEnvironmentVariable("baseUrl") ?? throw new InvalidOperationException("baseUrl is not set as an env variable"));
             options.Metrics.Enabled = true;
