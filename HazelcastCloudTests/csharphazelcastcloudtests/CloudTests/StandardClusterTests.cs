@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Hazelcast;
 using Hazelcast.Testing.Remote;
 using NUnit.Framework;
+using Microsoft.Extensions.Logging;
 
 namespace CloudTests
 {
