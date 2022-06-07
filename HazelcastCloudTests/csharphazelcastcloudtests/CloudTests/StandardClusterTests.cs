@@ -54,29 +54,32 @@ namespace CloudTests
                     isSmart);
                 _tmpClusterObject = _sslDisabledCluster;
             }
-            Console.WriteLine("Create client");
+
+            var logger = options.LoggerFactory.Service.CreateLogger("test");
+
+            logger.LogInformation("Create client");
             await using var client = await HazelcastClientFactory.StartNewClientAsync(options);
             await using var map = await client.GetMapAsync<string, string>("MapForTest");
-            await Helper.MapPutGetAndVerify(map);
-            
-            Console.WriteLine("Scale up cluster from 2 node to 4");
+            await Helper.MapPutGetAndVerify(map, logger);
+
+            logger.LogInformation("Scale up cluster from 2 node to 4");
             await RcClient.ScaleUpDownHazelcastCloudStandardCluster(_tmpClusterObject.Id, 2);
-            await Helper.MapPutGetAndVerify(map);
-            
-            Console.WriteLine("Scale down cluster from 4 node to 2");
+            await Helper.MapPutGetAndVerify(map, logger);
+
+            logger.LogInformation("Scale down cluster from 4 node to 2");
             await RcClient.ScaleUpDownHazelcastCloudStandardCluster(_tmpClusterObject.Id, -2);
-            await Helper.MapPutGetAndVerify(map);
-            
-            Console.WriteLine("Stop cluster");
+            await Helper.MapPutGetAndVerify(map, logger);
+
+            logger.LogInformation("Stop cluster");
             await RcClient.StopHazelcastCloudCluster(_tmpClusterObject.Id);
-            
-            Console.WriteLine("Resume cluster");
+
+            logger.LogInformation("Resume cluster");
             await RcClient.ResumeHazelcastCloudCluster(_tmpClusterObject.Id);
-            
-            Console.WriteLine("Wait 5 seconds to be sure client is connected again");
+
+            logger.LogInformation("Wait 5 seconds to be sure client is connected again");
             Thread.Sleep(5000);
             
-            await Helper.MapPutGetAndVerify(map);
+            await Helper.MapPutGetAndVerify(map, logger);
             await client.DisposeAsync();
         }
         
@@ -89,10 +92,11 @@ namespace CloudTests
                 _sslEnabledCluster.Token, isSmart);
             options.Networking.Ssl.Enabled = true;
             options.Networking.ConnectionRetry.ClusterConnectionTimeoutMilliseconds = 10000;
+            var logger = options.LoggerFactory.Service.CreateLogger("test");
             bool value = false;
             try
             {
-                Console.WriteLine("Try connecting ssl cluster without certificates");
+                logger.LogInformation("Try connecting ssl cluster without certificates");
                 await using var client = await HazelcastClientFactory.StartNewClientAsync(options);
             }
             catch (Exception e)

@@ -46,7 +46,12 @@ namespace CloudTests
             options.ClusterName = nameForConnect;
             options.Networking.Cloud.DiscoveryToken = token;
             options.Networking.ReconnectMode = ReconnectMode.ReconnectAsync;
-            options.LoggerFactory.Creator = () => LoggerFactory.Create(logBuilder => logBuilder.AddSimpleConsole(o => { o.SingleLine = true; o.TimestampFormat = "hh:mm:ss.fff"; }));
+            options.LoggerFactory.Creator = () => LoggerFactory.Create(logBuilder =>
+                logBuilder.AddSimpleConsole(o =>
+                {
+                    o.SingleLine = true;
+                    o.TimestampFormat = "hh:mm:ss.fff ";
+                }));
 
             options.Networking.Cloud.Url = new Uri(Environment.GetEnvironmentVariable("baseUrl") ?? throw new InvalidOperationException("baseUrl is not set as an env variable"));
             options.Metrics.Enabled = true;
@@ -56,9 +61,9 @@ namespace CloudTests
 
         }
 
-        public static async Task MapPutGetAndVerify(IHMap<string, string> map)
+        public static async Task MapPutGetAndVerify(IHMap<string, string> map, ILogger logger)
         {
-            Console.WriteLine("Randomly putting values to map and verify");
+            logger.LogInformation("Randomly putting values to map and verify");
             await map.ClearAsync();
             var random = new Random();
             for (var i = 0; i < 20; i++)
